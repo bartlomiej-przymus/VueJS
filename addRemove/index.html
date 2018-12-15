@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue JS practice</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+
+        <ul>
+            <li v-for="name in names">{{ name }}</li>
+        </ul>
+
+        <input type="text" id="input" v-model="newName">
+
+        <!-- <button v-on:click="addName">Add Name</button> -->
+
+        <button @click="addName">Add Name</button> <!-- @click shorthand to v-on:click-->
+
+        <button @click="removeName">Remove Name</button>
+
+    </div>
+    <script>
+        var app = new Vue({
+
+            el: '#root',
+
+            data: {
+
+                newName: '',
+
+                names: ['John', 'Jane', 'Jacob', 'Jabba']
+            },
+
+            methods: {
+
+                addName() {
+
+                    this.names.push(this.newName);
+
+                    this.newName = '';
+
+                },
+
+                removeName() {
+
+                    this.names.pop();
+
+                }
+
+            },
+
+            // mounted() {
+
+            //     document.querySelector('button').addEventListener('click', () => {
+                
+            //     let name = document.querySelector('#input').value;
+
+            //     app.names.push(name);
+
+            //     name.value = '';
+
+            //     });
+
+            //  }
+
+        });
+        
+    </script>
+</body>
+</html>
