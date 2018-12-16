@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <style>
+    button {border: solid 1px black; margin: 5px; width:150px; height: 30px;}
+    .done { background: green;}
+    .notDone { background: red;}
+    </style>
+</head>
+<body>
+    <div id="root">
+
+        <h2>All Tasks</h2>
+
+
+        <ul>
+
+            <li v-for="task in tasks"><button v-text="task.description" :class="{'done': task.completed, 'notDone': ! task.completed}" @click="toggleDone => task.completed ? task.completed = false : task.completed = true"></button></li>
+            
+
+        </ul>
+
+        <button @click="resetTasks">Reset Tasks Status</button>
+
+
+        <h2>Incomplete Tasks</h2>
+
+
+        <ul>
+
+            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+
+        </ul>
+
+        <h2>Completed Tasks</h2>
+
+
+        <ul>
+
+            <li v-for="task in completedTasks" v-text="task.description"></li>
+
+        </ul>
+
+    </div>
+    <script>
+        var app = new Vue ({
+            el: '#root',
+            data: {
+                
+                tasks:[
+
+                { description:'Go to store', completed: true },
+
+                { description:'Finish screencast', completed: false },
+
+                { description:'Make donation', completed: false },
+
+                { description:'Clear Inbox', completed: false },
+
+                { description:'Make dinner', completed: false },
+
+                { description:'Clean room', completed: true }
+
+                ]
+
+            },
+            methods: {
+
+                resetTasks() {
+
+                    return this.tasks.map(task => task.completed = false);
+
+                },
+
+            },
+            computed: {
+
+                incompleteTasks() {
+
+                    return this.tasks.filter(task => ! task.completed);
+
+                },
+
+                completedTasks() {
+
+                    return this.tasks.filter(task => task.completed);
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>
