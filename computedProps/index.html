@@ -17,6 +17,8 @@
 
         <h2>All Tasks</h2>
 
+        <h4 v-text="displayDoneMessage"></h4>
+
 
         <ul>
 
@@ -66,7 +68,9 @@
 
                 { description:'Clean room', completed: true }
 
-                ]
+                ],
+
+                doneMsg: ""
 
             },
             methods: {
@@ -89,6 +93,16 @@
                 completedTasks() {
 
                     return this.tasks.filter(task => task.completed);
+
+                },
+
+                displayDoneMessage() {
+
+                    if (this.incompleteTasks.length === 0) {
+                        return this.doneMsg = "That's it! You have done it all!";
+                    } else {
+                        return this.doneMsg = "Continue working You're not done yet!";
+                    }
 
                 }
             }
