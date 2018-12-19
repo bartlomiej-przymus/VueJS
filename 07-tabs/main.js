@@ -24,7 +24,7 @@ Vue.component('tabs', {
     methods: {
         selectTab(selectedTab) {
             this.tabs.forEach(tab => {
-            tab.isActive = (tab === selectedTab);
+                tab.isActive = (tab == selectedTab);
             });
         }
     }
@@ -42,9 +42,9 @@ Vue.component('tab', {
             isActive: false
         };
     },
-    mounted: {
-        isActive: this.selected
-    }
+    mounted() {
+        this.isActive = this.selected;
+    },
 });
 new Vue({
     el: '#root'
